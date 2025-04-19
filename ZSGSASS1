@@ -242,3 +242,148 @@ mysql> SELECT * FROM beaches;
 |        5 | Santhome Beach     | Chennai       |
 +----------+--------------------+---------------+
 5 rows in set (0.00 sec)
+
+mysql> INSERT INTO movies(movie_name,hero_name,heroine_name)VALUES
+    -> ('Good Bad Ugly','Ajith Kumar','Trisha'),
+    -> ('Idly Kadai','Dhanush','Nithya Menon'),
+    -> ('Thug Life','Silambarasan','Trisha'),
+    -> ('Retro','Suriya','Pooja Hegde'),
+    -> ('Dragon','Pradeep Ranganathan','Anupama Parameswaran');
+Query OK, 5 rows affected (0.02 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM movies;
++----------+---------------+---------------------+----------------------+
+| movie_id | movie_name    | hero_name           | heroine_name         |
++----------+---------------+---------------------+----------------------+
+|        1 | Good Bad Ugly | Ajith Kumar         | Trisha               |
+|        2 | Idly Kadai    | Dhanush             | Nithya Menon         |
+|        3 | Thug Life     | Silambarasan        | Trisha               |
+|        4 | Retro         | Suriya              | Pooja Hegde          |
+|        5 | Dragon        | Pradeep Ranganathan | Anupama Parameswaran |
++----------+---------------+---------------------+----------------------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO student_favorites VALUES
+    -> (1,'Suriya','Samantha'),
+    -> (2,'Ajith Kumar','Nayanthara'),
+    -> (3,'Suriya','Jyotika'),
+    -> (4,'Dhanush','Amy Jackson'),
+    -> (5,'Vijay','Trisha'),
+    -> (6,'Suriya','Samantha'),
+    -> (7,'Rajinikanth','Manju Warrior'),
+    -> (8,'Atharva','Sreya'),
+    -> (9,'Silambarasan','Megha Akash'),
+    -> (10,'Sivakarthikeyan','Nazriya');
+Query OK, 10 rows affected (0.02 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM student_favorites;
++------------+-----------------+------------------+
+| student_id | favorite_actor  | favorite_actress |
++------------+-----------------+------------------+
+|          1 | Suriya          | Samantha         |
+|          2 | Ajith Kumar     | Nayanthara       |
+|          3 | Suriya          | Jyotika          |
+|          4 | Dhanush         | Amy Jackson      |
+|          5 | Vijay           | Trisha           |
+|          6 | Suriya          | Samantha         |
+|          7 | Rajinikanth     | Manju Warrior    |
+|          8 | Atharva         | Sreya            |
+|          9 | Silambarasan    | Megha Akash      |
+|         10 | Sivakarthikeyan | Nazriya          |
++------------+-----------------+------------------+
+10 rows in set (0.00 sec)
+
+mysql> INSERT INTO student_fav_malls VALUES
+    -> (1,1),
+    -> (2,5),
+    -> (3,5),
+    -> (4,6),
+    -> (5,3),
+    -> (6,2),
+    -> (7,1),
+    -> (8,4),
+    -> (9,2),
+    -> (10,5);
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM student_fav_malls;
++------------+---------+
+| student_id | mall_id |
++------------+---------+
+|          1 |       1 |
+|          7 |       1 |
+|          6 |       2 |
+|          9 |       2 |
+|          5 |       3 |
+|          8 |       4 |
+|          2 |       5 |
+|          3 |       5 |
+|         10 |       5 |
+|          4 |       6 |
++------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> INSERT INTO student_fav_beaches VALUES
+    -> (1,1),
+    -> (2,3),
+    -> (3,5),
+    -> (4,3),
+    -> (5,1),
+    -> (6,2),
+    -> (7,4),
+    -> (8,4),
+    -> (9,5),
+    -> (10,2);
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM student_fav_beaches;
++------------+----------+
+| student_id | beach_id |
++------------+----------+
+|          1 |        1 |
+|          5 |        1 |
+|          6 |        2 |
+|         10 |        2 |
+|          2 |        3 |
+|          4 |        3 |
+|          7 |        4 |
+|          8 |        4 |
+|          3 |        5 |
+|          9 |        5 |
++------------+----------+
+10 rows in set (0.00 sec)
+
+mysql> INSERT INTO student_fav_movies VALUES
+    -> (1,4),
+    -> (2,1),
+    -> (3,2),
+    -> (4,4),
+    -> (5,5),
+    -> (6,4),
+    -> (7,1),
+    -> (8,3),
+    -> (9,5),
+    -> (10,4);
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM student_fav_movies;
++------------+----------+
+| student_id | movie_id |
++------------+----------+
+|          2 |        1 |
+|          7 |        1 |
+|          3 |        2 |
+|          8 |        3 |
+|          1 |        4 |
+|          4 |        4 |
+|          6 |        4 |
+|         10 |        4 |
+|          5 |        5 |
+|          9 |        5 |
++------------+----------+
+10 rows in set (0.00 sec)
