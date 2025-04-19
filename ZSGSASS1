@@ -221,3 +221,24 @@ mysql> SELECT * FROM shopping_malls;
 |       6 | Ampa Skywalk Mall  | Aminjikarai  |
 +---------+--------------------+--------------+
 6 rows in set (0.00 sec)
+
+mysql>  INSERT INTO beaches(beach_name,location)VALUES
+    -> ('Marina Beach','Chennai'),
+    ->  ('Besant Nagar Beach','Besant Nagar'),
+    ->  ('Elliots Beach','Adyar'),
+    -> ('VGP Golden Beach','Thiruvanmiyur'),
+    ->  ('Santhome Beach','Chennai');
+Query OK, 5 rows affected (0.02 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM beaches;
++----------+--------------------+---------------+
+| beach_id | beach_name         | location      |
++----------+--------------------+---------------+
+|        1 | Marina Beach       | Chennai       |
+|        2 | Besant Nagar Beach | Besant Nagar  |
+|        3 | Elliots Beach      | Adyar         |
+|        4 | VGP Golden Beach   | Thiruvanmiyur |
+|        5 | Santhome Beach     | Chennai       |
++----------+--------------------+---------------+
+5 rows in set (0.00 sec)
