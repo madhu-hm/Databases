@@ -105,6 +105,44 @@ mysql> INSERT INTO students(name,gender,contact_info)VALUES
 Query OK, 10 rows affected (0.02 sec)
 Records: 10  Duplicates: 0  Warnings: 0
 
+mysql> SELECT * FROM students;
++------------+---------+--------+--------------+
+| student_id | name    | gender | contact_info |
++------------+---------+--------+--------------+
+|          1 | Madhu   | Female | 8754156253   |
+|          2 | Mitha   | Female | 8765345768   |
+|          3 | Styris  | Male   | 9834576235   |
+|          4 | Navin   | Male   | 8653457652   |
+|          5 | Pooja   | Female | 8765345234   |
+|          6 | Pravee  | Female | 7634612980   |
+|          7 | Suriya  | Male   | 7568347251   |
+|          8 | Riya    | Female | 9856923654   |
+|          9 | Loshini | Female | 7667676934   |
+|         10 | Sheik   | Male   | 98765677634  |
++------------+---------+--------+--------------+
+10 rows in set (0.00 sec)
+
+mysql> UPDATE students SET contact_info='9734567987' WHERE name='Sheik';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM students;
++------------+---------+--------+--------------+
+| student_id | name    | gender | contact_info |
++------------+---------+--------+--------------+
+|          1 | Madhu   | Female | 8754156253   |
+|          2 | Mitha   | Female | 8765345768   |
+|          3 | Styris  | Male   | 9834576235   |
+|          4 | Navin   | Male   | 8653457652   |
+|          5 | Pooja   | Female | 8765345234   |
+|          6 | Pravee  | Female | 7634612980   |
+|          7 | Suriya  | Male   | 7568347251   |
+|          8 | Riya    | Female | 9856923654   |
+|          9 | Loshini | Female | 7667676934   |
+|         10 | Sheik   | Male   | 9734567987   |
++------------+---------+--------+--------------+
+10 rows in set (0.00 sec)
+
 mysql> INSERT INTO movie_genres(genre_name)VALUES
     -> ('Action'),
     -> ('Horror'),
@@ -115,3 +153,71 @@ mysql> INSERT INTO movie_genres(genre_name)VALUES
     -> ('Fantasy');
 Query OK, 7 rows affected (0.01 sec)
 Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM movie_genres;
++----------+-----------------+
+| genre_id | genre_name      |
++----------+-----------------+
+|        1 | Action          |
+|        2 | Horror          |
+|        3 | Thriller        |
+|        4 | Science Fiction |
+|        5 | Comedy          |
+|        6 | Romance         |
+|        7 | Fantasy         |
++----------+-----------------+
+7 rows in set (0.00 sec)
+
+mysql> INSERT INTO student_movie_interests VALUES
+    -> (1,6),
+    -> (2,5),
+    -> (3,6),
+    -> (4,1),
+    -> (5,7),
+    -> (6,2),
+    -> (7,1),
+    -> (8,4),
+    -> (9,3),
+    -> (10,1);
+Query OK, 10 rows affected (0.02 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM student_movie_interests;
++------------+----------+
+| student_id | genre_id |
++------------+----------+
+|          4 |        1 |
+|          7 |        1 |
+|         10 |        1 |
+|          6 |        2 |
+|          9 |        3 |
+|          8 |        4 |
+|          2 |        5 |
+|          1 |        6 |
+|          3 |        6 |
+|          5 |        7 |
++------------+----------+
+10 rows in set (0.00 sec)
+
+mysql> INSERT INTO shopping_malls(mall_name,location) VALUES
+    -> ('Phoenix Marketcity','Velachery'),
+    -> ('Express Avenue','Mount Road'),
+    -> ('VR Chennai Mall','Anna Nagar'),
+    -> ('Forum Vijaya Mall','Vadapalani'),
+    -> ('Spencer Plaza','Nungambakkam'),
+    -> ('Ampa Skywalk Mall','Aminjikarai');
+Query OK, 6 rows affected (0.02 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM shopping_malls;
++---------+--------------------+--------------+
+| mall_id | mall_name          | location     |
++---------+--------------------+--------------+
+|       1 | Phoenix Marketcity | Velachery    |
+|       2 | Express Avenue     | Mount Road   |
+|       3 | VR Chennai Mall    | Anna Nagar   |
+|       4 | Forum Vijaya Mall  | Vadapalani   |
+|       5 | Spencer Plaza      | Nungambakkam |
+|       6 | Ampa Skywalk Mall  | Aminjikarai  |
++---------+--------------------+--------------+
+6 rows in set (0.00 sec)
