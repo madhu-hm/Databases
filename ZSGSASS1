@@ -90,3 +90,28 @@ Query OK, 0 rows affected (0.05 sec)
 
 // inserting values for each tables
 
+mysql> INSERT INTO students(name,gender,contact_info)VALUES
+    -> ('Madhu','Female','8754156253'),
+    -> ('Mitha','Female','8765345768'),
+    -> ('Styris','Male','9834576235'),
+    -> ('Navin','Male','8653457652'),
+    -> ('Pooja','Female','8765345234'),
+    -> ('Pravee','Female','7634612980'),
+    -> ('Suriya','Male','7568347251'),
+    -> ('Riya','Female','9856923654'),
+    -> ('Loshini','Female','7667676934'),
+    -> ('Sheik','Male','98765677634')
+    -> ;
+Query OK, 10 rows affected (0.02 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO movie_genres(genre_name)VALUES
+    -> ('Action'),
+    -> ('Horror'),
+    -> ('Thriller'),
+    -> ('Science Fiction'),
+    -> ('Comedy'),
+    -> ('Romance'),
+    -> ('Fantasy');
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
