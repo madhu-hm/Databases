@@ -1,1 +1,89 @@
+// creating database
 
+mysql> CREATE DATABASE ZSGS;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> USE ZSGS;
+Database changed
+
+// creating tables
+
+mysql> CREATE TABLE students(
+    -> student_id INT PRIMARY KEY AUTO_INCREMENT,
+    -> name VARCHAR(100),
+    -> gender ENUM('Male','Female','Other'),
+    -> contact_info VARCHAR(255)
+    -> );
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> CREATE TABLE movie_genres(
+    -> genre_id INT PRIMARY KEY AUTO_INCREMENT,
+    -> genre_name VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE student_movie_interests(
+    -> student_id INT,
+    -> genre_id INT,
+    -> PRIMARY KEY(student_id,genre_id),
+    -> FOREIGN KEY(student_id) REFERENCES students(student_id),
+    -> FOREIGN KEY(genre_id)REFERENCES movie_genres(genre_id)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> CREATE TABLE shopping_malls(
+    -> mall_id INT PRIMARY KEY AUTO_INCREMENT,
+    -> mall_name VARCHAR(100),
+    -> location VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE beaches(
+    -> beach_id INT PRIMARY KEY AUTO_INCREMENT,
+    -> beach_name VARCHAR(100),
+    -> location VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE movies(
+    -> movie_id INT PRIMARY KEY AUTO_INCREMENT,
+    -> movie_name VARCHAR(100),
+    -> hero_name VARCHAR(100),
+    -> heroine_name VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE student_favorites(
+    -> student_id INT PRIMARY KEY,
+    -> favorite_actor VARCHAR(100),
+    -> favorite_actress VARCHAR(100),
+    -> FOREIGN KEY(student_id)REFERENCES students(student_id)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE student_fav_malls(
+    -> student_id INT,
+    -> mall_id INT,
+    -> PRIMARY KEY(student_id,mall_id),
+    -> FOREIGN KEY(student_id)REFERENCES students(student_id),
+    -> FOREIGN KEY(mall_id)REFERENCES shopping_malls(mall_id)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> CREATE TABLE student_fav_beaches(
+    -> student_id INT,
+    -> beach_id INT,
+    -> PRIMARY KEY(student_id,beach_id),
+    -> FOREIGN KEY(student_id)REFERENCES students(student_id),
+    -> FOREIGN KEY(beach_id)REFERENCES beaches(beach_id)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> CREATE TABLE student_fav_movies(
+    -> student_id INT,
+    -> movie_id INT,
+    -> PRIMARY KEY(student_id,movie_id),
+    -> FOREIGN KEY(student_id)REFERENCES students(student_id),
+    -> FOREIGN KEY(movie_id)REFERENCES movies(movie_id)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
