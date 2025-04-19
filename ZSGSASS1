@@ -87,3 +87,6 @@ mysql> CREATE TABLE student_fav_movies(
     -> FOREIGN KEY(movie_id)REFERENCES movies(movie_id)
     -> );
 Query OK, 0 rows affected (0.05 sec)
+
+// inserting values for each tables
+
