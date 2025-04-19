@@ -387,3 +387,49 @@ mysql> SELECT * FROM student_fav_movies;
 |          9 |        5 |
 +------------+----------+
 10 rows in set (0.00 sec)
+
+1.To get all student names
+
+mysql> SELECT name FROM students;
++---------+
+| name    |
++---------+
+| Madhu   |
+| Mitha   |
+| Styris  |
+| Navin   |
+| Pooja   |
+| Pravee  |
+| Suriya  |
+| Riya    |
+| Loshini |
+| Sheik   |
++---------+
+10 rows in set (0.00 sec)
+
+2.Get student contact info by name
+
+mysql> SELECT contact_info FROM students WHERE name='Madhu';
++--------------+
+| contact_info |
++--------------+
+| 8754156253   |
++--------------+
+1 row in set (0.00 sec)
+
+3.Students who like Romance movies
+
+mysql> SELECT s.name
+    -> FROM students s
+    -> JOIN student_movie_interests smi ON s.student_id=smi.student_id
+    -> JOIN movie_genres mg ON smi.genre_id=mg.genre_id
+    -> WHERE mg.genre_name='Romance';
++--------+
+| name   |
++--------+
+| Madhu  |
+| Styris |
++--------+
+2 rows in set (0.00 sec)
+
+4.
