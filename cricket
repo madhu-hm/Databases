@@ -1,0 +1,47 @@
+CREATE DATABASE sports;
+USE sports;
+CREATE TABLE cricket(playerID INT PRIMARY KEY,PlayerName VARCHAR(50),CaptainID INT,TeamName VARCHAR(50));
+INSERT INTO cricket VALUES
+	(45,'Rohit Sharma',NULL,'Mumbai Indians'),
+    (07,'MS Dhoni',NULL,'Chennai Super Kings'),
+    (18,'Virat Kohli',NULL,'Royal Challengers Bangalore'),
+    (33,'Hardik Pandya',45,'Mumbai Indians'),
+    (90,'Deepak Chahar',07,'Chennai Super Kings'),
+    (13,'Faf du Plessis',18,'Royal Challengers Bangalore'),
+    (8,'Ravindra Jadeja',07,'Chennai Super Kings'),
+    (93,'Jasprit Bumrah',45,'Mumbai Indians');
+SELECT * FROM cricket;
++----------+-----------------+-----------+-----------------------------+
+| playerID | PlayerName      | CaptainID | TeamName                    |
++----------+-----------------+-----------+-----------------------------+
+|        7 | MS Dhoni        |      NULL | Chennai Super Kings         |
+|        8 | Ravindra Jadeja |         7 | Chennai Super Kings         |
+|       13 | Faf du Plessis  |        18 | Royal Challengers Bangalore |
+|       18 | Virat Kohli     |      NULL | Royal Challengers Bangalore |
+|       33 | Hardik Pandya   |        45 | Mumbai Indians              |
+|       45 | Rohit Sharma    |      NULL | Mumbai Indians              |
+|       90 | Deepak Chahar   |         7 | Chennai Super Kings         |
+|       93 | Jasprit Bumrah  |        45 | Mumbai Indians              |
++----------+-----------------+-----------+-----------------------------+
+SELECT
+	  p.playerID,
+    p.PlayerName,
+    p.TeamName,
+    p.captainID,
+    c.playerName AS CaptainName
+FROM
+	cricket p
+LEFT JOIN
+	cricket c ON p.captainID=c.playerID;
++----------+-----------------+-----------------------------+-----------+--------------+
+| playerID | PlayerName      | TeamName                    | captainID | CaptainName  |
++----------+-----------------+-----------------------------+-----------+--------------+
+|        7 | MS Dhoni        | Chennai Super Kings         |      NULL | NULL         |
+|        8 | Ravindra Jadeja | Chennai Super Kings         |         7 | MS Dhoni     |
+|       13 | Faf du Plessis  | Royal Challengers Bangalore |        18 | Virat Kohli  |
+|       18 | Virat Kohli     | Royal Challengers Bangalore |      NULL | NULL         |
+|       33 | Hardik Pandya   | Mumbai Indians              |        45 | Rohit Sharma |
+|       45 | Rohit Sharma    | Mumbai Indians              |      NULL | NULL         |
+|       90 | Deepak Chahar   | Chennai Super Kings         |         7 | MS Dhoni     |
+|       93 | Jasprit Bumrah  | Mumbai Indians              |        45 | Rohit Sharma |
++----------+-----------------+-----------------------------+-----------+--------------+
