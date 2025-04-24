@@ -1,0 +1,620 @@
+CREATE DATABASE ZSGS;
+USE ZSGS;
+CREATE TABLE students(
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    gender ENUM('Male','Female','Other'),
+    contact_info VARCHAR(255)
+);
+CREATE TABLE movie_genres(
+    genre_id INT PRIMARY KEY AUTO_INCREMENT,
+    genre_name VARCHAR(50)
+);
+CREATE TABLE student_movie_interests(
+    student_id INT,
+    genre_id INT,
+    PRIMARY KEY(student_id,genre_id),
+    FOREIGN KEY(student_id) REFERENCES students(student_id),
+    FOREIGN KEY(genre_id)REFERENCES movie_genres(genre_id)
+);
+CREATE TABLE shopping_malls(
+    mall_id INT PRIMARY KEY AUTO_INCREMENT,
+    mall_name VARCHAR(100),
+    location VARCHAR(100)
+);
+CREATE TABLE beaches(
+    beach_id INT PRIMARY KEY AUTO_INCREMENT,
+    beach_name VARCHAR(100),
+    location VARCHAR(100)
+);
+CREATE TABLE movies(
+    movie_id INT PRIMARY KEY AUTO_INCREMENT,
+    movie_name VARCHAR(100),
+    hero_name VARCHAR(100),
+    heroine_name VARCHAR(100)
+);
+CREATE TABLE student_favorites(
+    student_id INT PRIMARY KEY,
+    favorite_actor VARCHAR(100),
+    favorite_actress VARCHAR(100),
+    FOREIGN KEY(student_id)REFERENCES students(student_id)
+);
+CREATE TABLE student_fav_malls(
+    student_id INT,
+    mall_id INT,
+    PRIMARY KEY(student_id,mall_id),
+    FOREIGN KEY(student_id)REFERENCES students(student_id),
+    FOREIGN KEY(mall_id)REFERENCES shopping_malls(mall_id)
+);
+CREATE TABLE student_fav_beaches(
+    student_id INT,
+    beach_id INT,
+    PRIMARY KEY(student_id,beach_id),
+    FOREIGN KEY(student_id)REFERENCES students(student_id),
+    FOREIGN KEY(beach_id)REFERENCES beaches(beach_id)
+);
+CREATE TABLE student_fav_movies(
+    student_id INT,
+    movie_id INT,
+    PRIMARY KEY(student_id,movie_id),
+    FOREIGN KEY(student_id)REFERENCES students(student_id),
+    FOREIGN KEY(movie_id)REFERENCES movies(movie_id)
+);
+INSERT INTO students(name,gender,contact_info)VALUES
+    ('Madhu','Female','8754156253'),
+    ('Mitha','Female','8765345768'),
+    ('Styris','Male','9834576235'),
+    ('Navin','Male','8653457652'),
+    ('Pooja','Female','8765345234'),
+    ('Pravee','Female','7634612980'),
+    ('Suriya','Male','7568347251'),
+    ('Riya','Female','9856923654'),
+    ('Loshini','Female','7667676934'),
+    ('Sheik','Male','98765677634')
+;
+
+UPDATE students SET contact_info='9734567987' WHERE name='Sheik';
+
+SELECT * FROM students;
++------------+---------+--------+--------------+
+| student_id | name    | gender | contact_info |
++------------+---------+--------+--------------+
+|          1 | Madhu   | Female | 8754156253   |
+|          2 | Mitha   | Female | 8765345768   |
+|          3 | Styris  | Male   | 9834576235   |
+|          4 | Navin   | Male   | 8653457652   |
+|          5 | Pooja   | Female | 8765345234   |
+|          6 | Pravee  | Female | 7634612980   |
+|          7 | Suriya  | Male   | 7568347251   |
+|          8 | Riya    | Female | 9856923654   |
+|          9 | Loshini | Female | 7667676934   |
+|         10 | Sheik   | Male   | 9734567987   |
++------------+---------+--------+--------------+
+
+INSERT INTO movie_genres(genre_name)VALUES
+    ('Action'),
+    ('Horror'),
+    ('Thriller'),
+    ('Science Fiction'),
+    ('Comedy'),
+    ('Romance'),
+    ('Fantasy');
+SELECT * FROM movie_genres;
++----------+-----------------+
+| genre_id | genre_name      |
++----------+-----------------+
+|        1 | Action          |
+|        2 | Horror          |
+|        3 | Thriller        |
+|        4 | Science Fiction |
+|        5 | Comedy          |
+|        6 | Romance         |
+|        7 | Fantasy         |
+|        8 | Action          |
+|        9 | Horror          |
+|       10 | Thriller        |
+|       11 | Science Fiction |
+|       12 | Comedy          |
+|       13 | Romance         |
+|       14 | Fantasy         |
++----------+-----------------+
+
+INSERT INTO student_movie_interests VALUES
+    (1,5),
+    (1,2),
+    (2,1),
+    (3,2),
+    (3,1),
+    (4,5),
+    (5,2),
+    (6,2),
+    (6,6),
+    (7,1),
+    (8,4),
+    (9,3),
+    (10,1);
+SELECT * FROM student_movie_interests;
++------------+----------+
+| student_id | genre_id |
++------------+----------+
+|          2 |        1 |
+|          3 |        1 |
+|          7 |        1 |
+|         10 |        1 |
+|          1 |        2 |
+|          3 |        2 |
+|          5 |        2 |
+|          6 |        2 |
+|          9 |        3 |
+|          8 |        4 |
+|          1 |        5 |
+|          4 |        5 |
+|          6 |        6 |
++------------+----------+
+    
+INSERT INTO shopping_malls(mall_name,location) VALUES
+    ('Phoenix Marketcity','Velachery'),
+    ('Express Avenue','Mount Road'),
+    ('VR Chennai Mall','Anna Nagar'),
+    ('Forum Vijaya Mall','Vadapalani'),
+    ('Spencer Plaza','Nungambakkam'),
+    ('Ampa Skywalk Mall','Aminjikarai');
+SELECT * FROM shopping_malls;
++---------+--------------------+--------------+
+| mall_id | mall_name          | location     |
++---------+--------------------+--------------+
+|       1 | Phoenix Marketcity | Velachery    |
+|       2 | Express Avenue     | Mount Road   |
+|       3 | VR Chennai Mall    | Anna Nagar   |
+|       4 | Forum Vijaya Mall  | Vadapalani   |
+|       5 | Spencer Plaza      | Nungambakkam |
+|       6 | Ampa Skywalk Mall  | Aminjikarai  |
++---------+--------------------+--------------+
+    
+INSERT INTO beaches(beach_name,location)VALUES
+    ('Marina Beach','Chennai'),
+    ('Besant Nagar Beach','Besant Nagar'),
+    ('Elliots Beach','Adyar'),
+    ('VGP Golden Beach','Thiruvanmiyur'),
+    ('Santhome Beach','Chennai');
+SELECT * FROM beaches;
++----------+--------------------+---------------+
+| beach_id | beach_name         | location      |
++----------+--------------------+---------------+
+|        1 | Marina Beach       | Chennai       |
+|        2 | Besant Nagar Beach | Besant Nagar  |
+|        3 | Elliots Beach      | Adyar         |
+|        4 | VGP Golden Beach   | Thiruvanmiyur |
+|        5 | Santhome Beach     | Chennai       |
++----------+--------------------+---------------+
+
+INSERT INTO movies(movie_name,hero_name,heroine_name)VALUES
+    ('Good Bad Ugly','Ajith Kumar','Trisha'),
+    ('Idly Kadai','Dhanush','Nithya Menon'),
+    ('Thug Life','Silambarasan','Trisha'),
+    ('Retro','Suriya','Pooja Hegde'),
+    ('Dragon','Pradeep Ranganathan','Anupama Parameswaran');
+SELECT * FROM movies;
++----------+---------------+---------------------+----------------------+
+| movie_id | movie_name    | hero_name           | heroine_name         |
++----------+---------------+---------------------+----------------------+
+|        1 | Good Bad Ugly | Ajith Kumar         | Trisha               |
+|        2 | Idly Kadai    | Dhanush             | Nithya Menon         |
+|        3 | Thug Life     | Silambarasan        | Trisha               |
+|        4 | Retro         | Suriya              | Pooja Hegde          |
+|        5 | Dragon        | Pradeep Ranganathan | Anupama Parameswaran |
++----------+---------------+---------------------+----------------------+
+    
+INSERT INTO student_favorites VALUES
+    (1,'Suriya','Samantha'),
+    (2,'Ajith Kumar','Nayanthara'),
+    (3,'Suriya','Jyotika'),
+    (4,'Dhanush','Amy Jackson'),
+    (5,'Vijay','Trisha'),
+    (6,'Suriya','Samantha'),
+    (7,'Rajinikanth','Manju Warrior'),
+    (8,'Atharva','Sreya'),
+    (9,'Silambarasan','Megha Akash'),
+    (10,'Sivakarthikeyan','Nazriya');
+SELECT * FROM student_favorites;
++------------+-----------------+------------------+
+| student_id | favorite_actor  | favorite_actress |
++------------+-----------------+------------------+
+|          1 | Suriya          | Samantha         |
+|          2 | Ajith Kumar     | Nayanthara       |
+|          3 | Suriya          | Jyotika          |
+|          4 | Dhanush         | Amy Jackson      |
+|          5 | Vijay           | Trisha           |
+|          6 | Suriya          | Samantha         |
+|          7 | Rajinikanth     | Manju Warrior    |
+|          8 | Atharva         | Sreya            |
+|          9 | Silambarasan    | Megha Akash      |
+|         10 | Sivakarthikeyan | Nazriya          |
++------------+-----------------+------------------+
+
+INSERT INTO student_fav_malls VALUES
+    (1,5),
+    (1,4),
+    (2,1),
+    (3,2),
+    (4,5),
+    (5,3),
+    (6,2),
+    (6,4),
+    (7,1),
+    (8,4),
+    (8,1),
+    (9,2),
+    (10,5);
+SELECT * FROM student_fav_malls;
++------------+---------+
+| student_id | mall_id |
++------------+---------+
+|          2 |       1 |
+|          7 |       1 |
+|          8 |       1 |
+|          3 |       2 |
+|          6 |       2 |
+|          9 |       2 |
+|          5 |       3 |
+|          1 |       4 |
+|          6 |       4 |
+|          8 |       4 |
+|          1 |       5 |
+|          4 |       5 |
+|         10 |       5 |
++------------+---------+
+
+INSERT INTO student_fav_beaches VALUES
+    (1,5),
+    (2,1),
+    (3,5),
+    (3,2),
+    (4,5),
+    (5,1),
+    (5,5),
+    (6,2),
+    (7,4),
+    (8,4),
+    (9,5),
+    (10,2);
+SELECT * FROM student_fav_beaches;
++------------+----------+
+| student_id | beach_id |
++------------+----------+
+|          2 |        1 |
+|          5 |        1 |
+|          3 |        2 |
+|          6 |        2 |
+|         10 |        2 |
+|          7 |        4 |
+|          8 |        4 |
+|          1 |        5 |
+|          3 |        5 |
+|          4 |        5 |
+|          5 |        5 |
+|          9 |        5 |
++------------+----------+
+
+INSERT INTO student_fav_movies VALUES
+    (1,1),
+    (1,5),
+    (2,1),
+    (3,2),
+    (3,4),
+    (4,5),
+    (5,5),
+    (5,4),
+    (6,2),
+    (7,1),
+    (8,3),
+    (9,5),
+    (9,4),
+    (10,4);
+SELECT * FROM student_fav_movies;
++------------+----------+
+| student_id | movie_id |
++------------+----------+
+|          1 |        1 |
+|          2 |        1 |
+|          7 |        1 |
+|          3 |        2 |
+|          6 |        2 |
+|          8 |        3 |
+|          3 |        4 |
+|          5 |        4 |
+|          9 |        4 |
+|         10 |        4 |
+|          1 |        5 |
+|          4 |        5 |
+|          5 |        5 |
+|          9 |        5 |
++------------+----------+
+
+SELECT name FROM students;
++---------+
+| name    |
++---------+
+| Madhu   |
+| Mitha   |
+| Styris  |
+| Navin   |
+| Pooja   |
+| Pravee  |
+| Suriya  |
+| Riya    |
+| Loshini |
+| Sheik   |
++---------+
+
+SELECT contact_info FROM students WHERE name='Madhu';
++--------------+
+| contact_info |
++--------------+
+| 8754156253   |
++--------------+
+
+-- 1. Students who share the same movie genres  
+    
+SELECT mg.genre_name, GROUP_CONCAT(DISTINCT s.name ORDER BY s.name) AS students
+FROM student_movie_interests smi
+JOIN students s ON smi.student_id = s.student_id
+JOIN movie_genres mg ON smi.genre_id = mg.genre_id
+GROUP BY mg.genre_id
+ORDER BY mg.genre_name;
++-----------------+---------------------------+
+| genre_name      | students                  |
++-----------------+---------------------------+
+| Action          | Mitha,Sheik,Styris,Suriya |
+| Comedy          | Madhu,Navin               |
+| Horror          | Madhu,Pooja,Pravee,Styris |
+| Romance         | Pravee                    |
+| Science Fiction | Riya                      |
+| Thriller        | Loshini                   |
++-----------------+---------------------------+
+
+-- 2.Group students by favorite actors or actresses
+
+SELECT favorite_actor AS Actors, GROUP_CONCAT(name) AS Fans
+FROM student_favorites sf
+JOIN students s ON sf.student_id = s.student_id
+GROUP BY favorite_actor;
+
++-----------------+---------------------+
+| Actors          | Fans                |
++-----------------+---------------------+
+| Ajith Kumar     | Mitha               |
+| Atharva         | Riya                |
+| Dhanush         | Navin               |
+| Rajinikanth     | Suriya              |
+| Silambarasan    | Loshini             |
+| Sivakarthikeyan | Sheik               |
+| Suriya          | Madhu,Styris,Pravee |
+| Vijay           | Pooja               |
++-----------------+---------------------+
+
+SELECT favorite_actress AS Actresses, GROUP_CONCAT(name) AS Fans
+FROM student_favorites sf
+JOIN students s ON sf.student_id = s.student_id
+GROUP BY favorite_actress;
+
++---------------+--------------+
+| Actresses     | Fans         |
++---------------+--------------+
+| Amy Jackson   | Navin        |
+| Jyotika       | Styris       |
+| Manju Warrior | Suriya       |
+| Megha Akash   | Loshini      |
+| Nayanthara    | Mitha        |
+| Nazriya       | Sheik        |
+| Samantha      | Madhu,Pravee |
+| Sreya         | Riya         |
+| Trisha        | Pooja        |
++---------------+--------------+
+
+-- 3. Suggest Ideal Friend Groups Who Share Similar Tastes in Entertainment and Hangout Spots
+SELECT 
+    mg.genre_name AS Shared_Genre,
+    b.beach_name AS Shared_Beach,
+    sm.mall_name AS Shared_Mall,
+    GROUP_CONCAT(DISTINCT s.name ORDER BY s.name) AS Friend_Group
+FROM student_movie_interests smi
+JOIN students s ON smi.student_id = s.student_id
+JOIN movie_genres mg ON smi.genre_id = mg.genre_id
+JOIN student_fav_beaches sb ON sb.student_id = s.student_id
+JOIN beaches b ON sb.beach_id = b.beach_id
+JOIN student_fav_malls sfm ON sfm.student_id = s.student_id
+JOIN shopping_malls sm ON sfm.mall_id = sm.mall_id
+GROUP BY mg.genre_name, b.beach_name, sm.mall_name
+HAVING COUNT(DISTINCT s.student_id) > 1;
++--------------+--------------------+----------------+---------------+
+| Shared_Genre | Shared_Beach       | Shared_Mall    | Friend_Group  |
++--------------+--------------------+----------------+---------------+
+| Comedy       | Santhome Beach     | Spencer Plaza  | Madhu,Navin   |
+| Horror       | Besant Nagar Beach | Express Avenue | Pravee,Styris |
++--------------+--------------------+----------------+---------------+
+    
+-- 4.Groups based on common movies, beaches, or malls
+SELECT 
+    m.movie_name AS Movie,
+    GROUP_CONCAT(s.name ORDER BY s.name SEPARATOR ', ') AS Students
+FROM student_fav_movies sfm
+JOIN students s ON sfm.student_id = s.student_id
+JOIN movies m ON sfm.movie_id = m.movie_id
+GROUP BY m.movie_id
+ORDER BY m.movie_name;
++---------------+-------------------------------+
+| Movie         | Students                      |
++---------------+-------------------------------+
+| Dragon        | Loshini, Madhu, Navin, Pooja  |
+| Good Bad Ugly | Madhu, Mitha, Suriya          |
+| Idly Kadai    | Pravee, Styris                |
+| Retro         | Loshini, Pooja, Sheik, Styris |
+| Thug Life     | Riya                          |
++---------------+-------------------------------+
+
+SELECT 
+    b.beach_name AS Beach,
+    GROUP_CONCAT(s.name ORDER BY s.name SEPARATOR ', ') AS Students
+FROM student_fav_beaches sb
+JOIN students s ON sb.student_id = s.student_id
+JOIN beaches b ON sb.beach_id = b.beach_id
+GROUP BY b.beach_id
+ORDER BY b.beach_name;
++--------------------+--------------------------------------+
+| Beach              | Students                             |
++--------------------+--------------------------------------+
+| Besant Nagar Beach | Pravee, Sheik, Styris                |
+| Marina Beach       | Mitha, Pooja                         |
+| Santhome Beach     | Loshini, Madhu, Navin, Pooja, Styris |
+| VGP Golden Beach   | Riya, Suriya                         |
++--------------------+--------------------------------------+
+
+SELECT 
+    sm.mall_name AS Mall,
+    GROUP_CONCAT(s.name ORDER BY s.name SEPARATOR ', ') AS Students
+FROM student_fav_malls sfm
+JOIN students s ON sfm.student_id = s.student_id
+JOIN shopping_malls sm ON sfm.mall_id = sm.mall_id
+GROUP BY sm.mall_id
+ORDER BY sm.mall_name;
++--------------------+-------------------------+
+| Mall               | Students                |
++--------------------+-------------------------+
+| Express Avenue     | Loshini, Pravee, Styris |
+| Forum Vijaya Mall  | Madhu, Pravee, Riya     |
+| Phoenix Marketcity | Mitha, Riya, Suriya     |
+| Spencer Plaza      | Madhu, Navin, Sheik     |
+| VR Chennai Mall    | Pooja                   |
++--------------------+-------------------------+
+
+SELECT 
+    mg.genre_name AS Genre,
+    GROUP_CONCAT(s.name ORDER BY s.name SEPARATOR ', ') AS Students
+FROM student_movie_interests smi
+JOIN students s ON smi.student_id = s.student_id
+JOIN movie_genres mg ON smi.genre_id = mg.genre_id
+GROUP BY mg.genre_id
+ORDER BY mg.genre_name;
++-----------------+------------------------------+
+| Genre           | Students                     |
++-----------------+------------------------------+
+| Action          | Mitha, Sheik, Styris, Suriya |
+| Comedy          | Madhu, Navin                 |
+| Horror          | Madhu, Pooja, Pravee, Styris |
+| Romance         | Pravee                       |
+| Science Fiction | Riya                         |
+| Thriller        | Loshini                      |
++-----------------+------------------------------+
+
+--5. most liked actor
+SELECT favorite_actor, COUNT(*) AS total_fans
+FROM student_favorites
+GROUP BY favorite_actor
+ORDER BY total_fans DESC
+LIMIT 1;
+
++----------------+------------+
+| favorite_actor | total_fans |
++----------------+------------+
+| Suriya         |          3 |
++----------------+------------+
+
+--6. most liked actress
+SELECT favorite_actress, COUNT(*) AS total_fans
+FROM student_favorites
+GROUP BY favorite_actress
+ORDER BY total_fans DESC
+LIMIT 1;
+
++------------------+------------+
+| favorite_actress | total_fans |
++------------------+------------+
+| Samantha         |          2 |
++------------------+------------+
+    
+-- 7.most popular movie genre
+SELECT mg.genre_name, COUNT(*) AS interested_students
+FROM student_movie_interests smi
+JOIN movie_genres mg ON smi.genre_id = mg.genre_id
+GROUP BY mg.genre_id
+ORDER BY interested_students DESC
+LIMIT 1;
++------------+---------------------+
+| genre_name | interested_students |
++------------+---------------------+
+| Horror     |                   4 |
++------------+---------------------+
+
+-- 8.top 5 fav movies
+SELECT m.movie_name, COUNT(*) AS total_likes
+FROM student_fav_movies sfm
+JOIN movies m ON sfm.movie_id = m.movie_id
+GROUP BY m.movie_id
+ORDER BY total_likes DESC
+LIMIT 5;
++---------------+-------------+
+| movie_name    | total_likes |
++---------------+-------------+
+| Retro         |           4 |
+| Dragon        |           4 |
+| Good Bad Ugly |           3 |
+| Idly Kadai    |           2 |
+| Thug Life     |           1 |
++---------------+-------------+
+   
+-- 9.Who loves romantic movies?
+SELECT DISTINCT s.name
+FROM students s
+JOIN student_movie_interests smi ON s.student_id = smi.student_id
+JOIN movie_genres mg ON smi.genre_id = mg.genre_id
+WHERE mg.genre_name = 'Romance';
++--------+
+| name   |
++--------+
+| Pravee |
++--------+
+
+-- 10.Which beach is most popular?
+SELECT b.beach_name, COUNT(sfb.student_id) AS likes
+FROM student_fav_beaches sfb
+JOIN beaches b ON sfb.beach_id = b.beach_id
+GROUP BY b.beach_name
+ORDER BY likes DESC
+LIMIT 1;
++----------------+-------+
+| beach_name     | likes |
++----------------+-------+
+| Santhome Beach |     5 |
++----------------+-------+
+    
+-- 11.Who are the top favorite actors?
+SELECT favorite_actor, COUNT(*) AS fans_count
+FROM student_favorites
+GROUP BY favorite_actor
+ORDER BY fans_count DESC;
++-----------------+------------+
+| favorite_actor  | fans_count |
++-----------------+------------+
+| Suriya          |          3 |
+| Vijay           |          1 |
+| Ajith Kumar     |          1 |
+| Silambarasan    |          1 |
+| Rajinikanth     |          1 |
+| Dhanush         |          1 |
+| Sivakarthikeyan |          1 |
+| Atharva         |          1 |
++-----------------+------------+
+    
+-- 12.Which movie can most people agree on watching together?
+SELECT m.movie_name, COUNT(sfm.student_id) AS total_fans
+FROM student_fav_movies sfm
+JOIN movies m ON sfm.movie_id = m.movie_id
+GROUP BY m.movie_id, m.movie_name
+ORDER BY total_fans DESC
+LIMIT 1;
++------------+------------+
+| movie_name | total_fans |
++------------+------------+
+| Retro      |          4 |
++------------+------------+
