@@ -38,6 +38,8 @@ DESC stall_24;
 
 SELECT * FROM stall_24;
 +------+-----------------+----------+-------+
+| s_no | Item            | Quantity | Price |
++------+-----------------+----------+-------+
 |    1 | Chocolate Donut |        8 |    90 |
 |    2 | Cheesecake      |        6 |   220 |
 |    3 | Ice Cream       |        7 |    70 |
