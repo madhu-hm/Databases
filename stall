@@ -1,0 +1,70 @@
+CREATE DATABASE stalls;
+USE stalls;
+CREATE TABLE stall_24(
+	s_no INT PRIMARY KEY AUTO_INCREMENT,
+    Item VARCHAR(100),
+    Quantity INT,
+    Price int
+);
+INSERT INTO stall_24 (Item, Quantity, Price) VALUES
+('Chocolate Donut', 8, 90),
+('Cheesecake', 6, 220),
+('Ice Cream', 7, 70),
+('Rasgulla', 18, 35),
+('Chocolate Donut', 11, 100),
+('Cheesecake', 4, 240),
+('Ice Cream', 6, 65),
+('Rasgulla', 10, 50),
+('Chocolate Donut', 13, 110),
+('Cheesecake', 3, 200),
+('Ice Cream', 9, 60),
+('Rasgulla', 12, 45),
+('Chocolate Donut', 10, 105),
+('Cheesecake', 5, 230),
+('Ice Cream', 8, 75),
+('Rasgulla', 16, 55),
+('Chocolate Donut', 12, 115),
+('Cheesecake', 7, 210),
+('Ice Cream', 5, 50);
+DESC stall_24;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| s_no     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| Item     | varchar(100) | YES  |     | NULL    |                |
+| Quantity | int(11)      | YES  |     | NULL    |                |
+| Price    | int(11)      | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+
+SELECT * FROM stall_24;
++------+-----------------+----------+-------+
+|    1 | Chocolate Donut |        8 |    90 |
+|    2 | Cheesecake      |        6 |   220 |
+|    3 | Ice Cream       |        7 |    70 |
+|    4 | Rasgulla        |       18 |    35 |
+|    5 | Chocolate Donut |       11 |   100 |
+|    6 | Cheesecake      |        4 |   240 |
+|    7 | Ice Cream       |        6 |    65 |
+|    8 | Rasgulla        |       10 |    50 |
+|    9 | Chocolate Donut |       13 |   110 |
+|   10 | Cheesecake      |        3 |   200 |
+|   11 | Ice Cream       |        9 |    60 |
+|   12 | Rasgulla        |       12 |    45 |
+|   13 | Chocolate Donut |       10 |   105 |
+|   14 | Cheesecake      |        5 |   230 |
+|   15 | Ice Cream       |        8 |    75 |
+|   16 | Rasgulla        |       16 |    55 |
+|   17 | Chocolate Donut |       12 |   115 |
+|   18 | Cheesecake      |        7 |   210 |
+|   19 | Ice Cream       |        5 |    50 |
++------+-----------------+----------+-------+
+
+SELECT Item,SUM(Price) AS Amount FROM stall_24 GROUP BY Item;
++-----------------+--------+
+| Item            | Amount |
++-----------------+--------+
+| Cheesecake      |   1100 |
+| Chocolate Donut |    520 |
+| Ice Cream       |    320 |
+| Rasgulla        |    185 |
++-----------------+--------+
